@@ -88,6 +88,7 @@ of $$\vec{X}_{j}$$ without using feature $$x_{i}$$, and get some subset of
 feature vectors which have been found to be closely related to that value.
 
 From here, there are two options:
+
 1. Make $$x_{i} \in \vec{X}_{j}$$ the average of the values of $$x_{i}$$ in the neighbors
 2. Take the _weighted distance_ of $$x_{i}$$ in the neighbors to decide the value in $$\vec{X}_{j}$$
 
