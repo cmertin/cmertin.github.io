@@ -1,8 +1,8 @@
 # User Settings | Edit there as per required
 
 title: Christopher E. Mertin's GitHub
-url: "http://cmertin.github.io"
-baseurl: "/"
+url: "https://cmertin.github.io"
+baseurl: "https://cmertin.github.io"
 
 # This will show up at the top of index page
 site_heading: >
