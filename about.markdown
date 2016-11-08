@@ -1,15 +1,16 @@
 ---
 layout: about
-title: accent
-author: Ankit Sultana
+title: About Me
+author: Christopher E. Mertin
 permalink: /about
 ---
 
-Hi! My name is yourname!
+My name is Christopher Mertin and this is my page on both my projects and
+topics in Machine Learning.
 
-> One shalt not speak shakespearean, or brocolli McDonalds
+I graduated from Florida State University in 2010 with a dual Bachelor's in
+Physics and Applied Mathematics. I'm currently attending the University of Utah
+where I'm pursuing a Master's in Data Management and Analytics.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This page is to showcase various problems and projects that I've undertaken,
+as well as be a tool for people to learn about aspects of Machine Learning. 
