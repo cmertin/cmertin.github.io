@@ -6,7 +6,7 @@ baseurl: ""
 
 # This will show up at the top of index page
 site_heading: >
-    Christopher E. Mertin <span class="faded">'s GitHub</span>
+    Christopher E. Mertin<span class="faded">'s GitHub</span>
 
 email: cmertin@cs.utah.edu
 author: Christopher E. Mertin
