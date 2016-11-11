@@ -67,7 +67,7 @@ _Method of Gradient Descent_.
 
 ### Batch Gradient Descent
 
-The generalized steps of Gradient Descent is we have some function $$J(\boldsymbol{\theta})$$
+The generalized steps of Gradient Descent is we have some function $$J(\vec{\theta})$$
 (note, it can be multivariate) and we want to minimize it over all values of $$\theta_{i}$$.
 
 In our example, we will only be using it for the 1-diemsional case, _i.e._ $$\theta_{0},\ \theta_{1}$$. The outline of the algorithm is:
@@ -82,7 +82,7 @@ to the minima or at the very least the local minima. At which point, it has "con
 
 Mathematically, this can be written as
 
-$$\theta_{j} = \theta_{j} - \alpha\frac{\partial}{\partial \theta_{j}}J(\boldsymbol{\theta})$$
+$$\theta_{j} = \theta_{j} - \alpha\frac{\partial}{\partial \theta_{j}}J(\vec{\theta})$$
 
 for all $$j \in \{0, 1, \ldots, M\}$$, where $$M$$ is the size of your feature vector,
 which for this 1D case would be $$\{ 0, 1\}$$. You would repeat the above equation
@@ -120,12 +120,12 @@ Again, the code can be found [here](https://github.com/cmertin/Machine_Learning/
 which reads in the data and performs the linear regression using gradient descent.
 
 I chose a value of $$\alpha$$ for this problem, and also stored all the values of
-$$\boldsymbol{\theta}$$ so you can see how $$\boldsymbol{\theta}$$ evolves over time.
+$$\vec{\theta}$$ so you can see how $$\vec{\theta}$$ evolves over time.
 
 The final result of this was
 
-$$\theta = \begin{pmatrix}0.751010\\ 0.06370 \end{pmatrix}$$
+$$\vec{\theta} = \begin{pmatrix}0.751010\\ 0.06370 \end{pmatrix}$$
 
-where you can see the evolution of $$\boldsymbol{\theta}$$ as it evolves below.
+where you can see the evolution of $$\vec{\theta}$$ as it evolves below.
 
 ![Linear Regression Animated](images/11_5-Lin_Reg/plot_regression.gif)
