@@ -73,7 +73,7 @@ The generalized steps of Gradient Descent is we have some function $$J(\vec{\the
 In our example, we will only be using it for the 1-diemsional case, _i.e._ $$\theta_{0},\ \theta_{1}$$. The outline of the algorithm is:
 
 1. Start with some values of $$\theta_{0}$$ and $$\theta_{1}$$
-2. Keey changing $$\theta_{0}$$ and $$\theta_{1}$$ to reduce $$J(\theta_{0}, \theta_{1})$$
+2. Keep changing $$\theta_{0}$$ and $$\theta_{1}$$ to reduce $$J(\theta_{0}, \theta_{1})$$
 until we hopefully end at the minimum
 
 How gradient descent works, is it traverses towards the path of greatest descent
