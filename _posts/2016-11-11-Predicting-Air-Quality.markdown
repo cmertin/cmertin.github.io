@@ -114,6 +114,8 @@ The python script used to generate these plots can be found [here](https://githu
 The normal equation is good for various problems in giving the minimum of the
 function. The normal equation gives us a way to solve for $$\vec{\theta}$$
 analytically, and not have to worry about iterations to get to the solution.
+Because it gives the *exact* solution, you don't need to worry about feature
+scaling as you do with Gradient Descent.
 
 The idea for this equation is that we take the derivative of $$J(\vec{\theta})\ \forall \ j$$ and set all the equations equal to zero and solve. As from Calculus, this
 would give the minimum of the function. The results from doing this is
