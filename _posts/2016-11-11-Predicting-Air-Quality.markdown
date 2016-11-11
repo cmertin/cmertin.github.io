@@ -110,10 +110,10 @@ This can easily be extended to different powers of $$x$$ by simply changing $$h_
 #### Normal Equation
 
 The normal equation is good for various problems in giving the minimum of the
-function. The normal equation gives us a way to solve for $$\vec{\theta}}$$
+function. The normal equation gives us a way to solve for $$\vec{\theta}$$
 analytically, and not have to worry about iterations to get to the solution.
 
-The idea for this equation is that we take the derivative of $$J(\vec{\theta}) \forall j$$ and set all the equations equal to zero and solve. As from Calculus, this
+The idea for this equation is that we take the derivative of $$J(\vec{\theta})\ \forall \ j$$ and set all the equations equal to zero and solve. As from Calculus, this
 would give the minimum of the function. The results from doing this is
 
 $$\vec{\theta} = \left( X^{T}X \right)^{-1}X^{T} \vec{y}$$
