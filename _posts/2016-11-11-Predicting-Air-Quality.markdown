@@ -103,7 +103,7 @@ $$h_{\theta}(x) = \theta_{0} + \theta_{1}\sqrt{x_{1}}$$
 and we can use the normal routine that we use for linear regression. In doing so,
 the results are
 
-![non-linear results](images/11_11-Multi-Lin_Reg/non-linear_results.png)
+![non-linear results](images/11_11-Multi_Lin_Reg/non-linear_results.png)
 
 #### Normal Equation
 
