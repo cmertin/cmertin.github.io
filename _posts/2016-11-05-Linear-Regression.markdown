@@ -124,7 +124,7 @@ $$\vec{\theta}$$ so you can see how $$\vec{\theta}$$ evolves over time.
 
 The final result of this was
 
-$$\vec{\theta} = \begin{pmatrix}0.751010\\ 0.06370 \end{pmatrix}$$
+$$\vec{\theta} = \begin{pmatrix}0.75101\\ 0.06370 \end{pmatrix}$$
 
 where you can see the evolution of $$\vec{\theta}$$ as it evolves below.
 
