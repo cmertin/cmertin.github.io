@@ -107,6 +107,8 @@ the results are
 
 This can easily be extended to different powers of $$x$$ by simply changing $$h_{\theta}(x)$$.
 
+The python script used to generate these plots can be found [here](https://github.com/cmertin/Machine_Learning/blob/master/Post_Programs/polynomail_regression.py).
+
 #### Normal Equation
 
 The normal equation is good for various problems in giving the minimum of the
