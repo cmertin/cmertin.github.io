@@ -105,9 +105,37 @@ the results are
 
 ![non-linear results](images/11_11-Multi_Lin_Reg/non-linear_results.png)
 
+This can easily be extended to different powers of $$x$$ by simply changing $$h_{\theta}(x)$$.
+
 #### Normal Equation
 
+The normal equation is good for various problems in giving the minimum of the
+function. The normal equation gives us a way to solve for $$\vec{\theta}}$$
+analytically, and not have to worry about iterations to get to the solution.
 
+The idea for this equation is that we take the derivative of $$J(\vec{\theta}) \forall j$$ and set all the equations equal to zero and solve. As from Calculus, this
+would give the minimum of the function. The results from doing this is
+
+$$\vec{\theta} = \left( X^{T}X \right)^{-1}X^{T} \vec{y}$$
+
+where $$X$$ is a matrix with each row representing a feature vector, and $$\vec{y}$$
+is a vector where each row represents the corresponding "true value."
+
+There are a few potential problems with this technique. It is *usually* fast, though
+becomes slow and memory intensive for large feature vectors. Therefore, for larger
+problems, Gradient Descent is better to be used, while the Normal Equation excels
+in smaller types of problems. The order of magnitude where you should be considering
+switching to Gradient Descent is for problems where your $$X$$ is somewhere on the
+order of $$10000 \times 10000$$. Most modern day computers can do larger linear
+algebra routines below this quick enough to where it won't be too memory intensive
+or take too long.
+
+The other problem is with linearity of the matrix. There is *no guarentee* that
+$$X$$ is singular (invertible). This has the potential to cause problems when
+calculating $$(X^{T}X)^{-1}$$. Instead of calculating the inverse directly, what
+you can do is use the "Pseudoinverse" which will give you a good enough representation
+of the inverse every time and it will be close enough for the problem. The
+pseudoinverse can be implemented in `numpy` with the use of `numpy.linalg.pinv()`.
 
 # Air Quality Prediction
 
