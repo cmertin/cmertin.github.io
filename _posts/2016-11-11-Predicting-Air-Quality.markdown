@@ -93,7 +93,7 @@ given. This is useful if you have some insight about the problem and the feature
 you think would be better suited for your problem. For example, consider the
 figure below
 
-![non-linear Figure](images/11_11-Multi_Lin_Reg/non-linear.png)
+![non-linear Figure](images/2016/11/11_11-Multi_Lin_Reg/non-linear.png)
 
 It is obviously a non-linear function. However, we can tell that it at least *looks*
 somewhat like $$\sqrt{x}$$ from the data. We can make our hypothesis function
@@ -103,7 +103,7 @@ $$h_{\theta}(x) = \theta_{0} + \theta_{1}\sqrt{x_{1}}$$
 and we can use the normal routine that we use for linear regression. In doing so,
 the results are
 
-![non-linear results](images/11_11-Multi_Lin_Reg/non-linear_results.png)
+![non-linear results](images/2016/11/11_11-Multi_Lin_Reg/non-linear_results.png)
 
 This can easily be extended to different powers of $$x$$ by simply changing $$h_{\theta}(x)$$.
 

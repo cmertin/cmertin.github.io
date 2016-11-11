@@ -14,7 +14,7 @@ x: Age (years) | y: Height (meters)
 
 And so on, producing a plot of
 
-![Data Points](images/11_5-Lin_Reg/linreg_1.png)
+![Data Points](images/2016/11/11_5-Lin_Reg/linreg_1.png)
 
 Now let's say that given a certain age, you want to predict the height in meters
 from this data. This data would be considered your "training set," and would be
@@ -132,4 +132,4 @@ $$\vec{\theta} = \begin{pmatrix}0.75101\\ 0.06370 \end{pmatrix}$$
 
 where you can see the evolution of $$\vec{\theta}$$ as it evolves below.
 
-![Linear Regression Animated](images/11_5-Lin_Reg/plot_regression.gif)
+![Linear Regression Animated](images/2016/11/11_5-Lin_Reg/plot_regression.gif)

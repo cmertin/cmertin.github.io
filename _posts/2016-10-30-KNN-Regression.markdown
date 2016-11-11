@@ -1,6 +1,3 @@
----
----
-
 In Machine Learning sometimes data is missing and has to be accounted for.
 There are multiple ways to take care of this data, such as averaging over all
 the values, simply removing the data corresponding to that feature vector, or
@@ -71,7 +68,7 @@ in the example below, which is a [Voronoi Diagram](https://en.wikipedia.org/wiki
 of different values for $$p$$ that I wrote in Python for 4 points. The colors
 denote the labeling/regions.
 
-![Voronoi Map](images/VoronoiMap.gif)
+![Voronoi Map](images/2016/10/10_30-KNN/VoronoiMap.gif)
 
 There isn't much change since the points are spaced decently far apart for the
 region, but you can see some changes in the labeling based on the value of $$p$$.
