@@ -1,23 +1,27 @@
 Linear Regression is one of the most used algorithms when it comes to regression
 in machine learning practices. _Linear Regression_ treats each feature of the
-input feature vector as having a linear dependence on the regression model. It
-can be represented as
+input feature vector as having a linear dependence on the regression model.
 
-$$y(\mathbf{x}) = \mathbf{\theta}^{T}\mathbf{x}$$
+For example, imagine that you have some data such as height and age of various
+people. Something that looks like
 
-which for the 1-Dimensional case translates to
+x: Age (years) | y: Height (meters)
+---------------|-------------------
+2.0659         | 0.7919
+2.3684         | 0.9160
+2.5400         | 9.0538
+...            | ...
 
-$$y(\mathbf{x}) = \theta_{0} + x\theta_{1}$$
+And so on, producing a plot of
 
-where $$\theta_{0}$$ is the "offset" and comes about by setting $$x_{0} = 1$$,
-thus leaving it as a single dimensional problem.
+![Data Points](images/11_5-Lin_Reg/linreg_1.png)
 
-This can be extrapolated into a multi-dimensional problem quite easily, giving
+Now let's say that given a certain age, you want to predict the height in meters
+from this data. This data would be considered your "training set," and would be
+used to train your linear regression classifier so that you can predict results.
 
-$$y(\mathbf{x}) = \theta_{0} + \sum_{i=1}^{N}\theta_{i}$$
+What it would essentially do is give you a linear fit based on some given parameter,
+which in this instance would be the age. In other words, it _maps_ values from $$x$$
+to $$y$$.
 
-where again we have $$x_{0} = 1$$. We can reformulate this to simply being
-
-$$y(\mathbf{x}) = \mathbf{\theta}^{T}\mathbf{x}$$
-
-which will give us the same result since it is just a simple vector multiplication.
+# 1 Dimensional Linear Regression
