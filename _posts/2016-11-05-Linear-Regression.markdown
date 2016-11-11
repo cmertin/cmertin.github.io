@@ -65,7 +65,7 @@ $$\min_{\theta_{0},\theta_{1}} J(\theta_{0}, \theta_{1})$$
 which is a minimization problem. This can be done with the
 _Method of Gradient Descent_.
 
-### Gradient Descent
+### Batch Gradient Descent
 
 The generalized steps of Gradient Descent is we have some function $$J(\mathbf{\theta})$$
 (note, it can be multivariate) and we want to minimize it over all values of $$\theta_{i}$$.
@@ -84,7 +84,7 @@ Mathematically, this can be written as
 
 $$\theta_{j} = \theta_{j} - \alpha\frac{\partial}{\partial \theta_{j}}J(\mathbf{\theta})$$
 
-for all $$j \in \{0, 1, \ldots, N\}$$, where $$N$$ is the size of your feature vector,
+for all $$j \in \{0, 1, \ldots, M\}$$, where $$M$$ is the size of your feature vector,
 which for this 1D case would be $$\{ 0, 1\}$$. You would repeat the above equation
 until convergence is reached. You should be updating $$\theta_{i}$$ simultaneously,
 meaning you calculate for all values of $$\theta_{i}$$, and only **after** are the
@@ -99,6 +99,21 @@ We can apply this to our cost function, but we need to determine what the partia
 
 $$\frac{\partial}{\partial \theta_{0}}J(\theta_{0}, \theta_{1}) = \frac{1}{N}\sum_{i=1}^{N}\left[ h_{\theta}\left( x^{(i)}\right) - y^{(i)}\right]$$
 
-and
+and for $$\frac{\partial}{\partial \theta_{1}}$$
 
 $$\frac{\partial}{\partial \theta_{1}}J(\theta_{0}, \theta_{1}) = \frac{1}{N}\sum_{i=1}^{N}\left[ h_{\theta}\left( x^{(i)}\right) - y^{(i)}\right]x^{(i)}$$
+
+where $$N$$ is your training set. Our Gradient Descent algorithm becomes
+
+$$\theta_{0} = \theta_{0} - \alpha\frac{1}{m}\sum_{i=1}^{N}\left[ h_{\theta}\left( x^{(i)}\right) - y^{(i)}\right]$$
+
+$$\theta_{1} = \theta_{1} - \alpha\frac{1}{N}\sum_{i=1}^{N}\left[ h_{\theta}\left( x^{(i)}\right) - y^{(i)}\right]$$
+
+Where we perform a "simultaneous update" over the values of the feature vector.
+
+## Applying to Age and Height Data
+
+We can use this above technique to find a linear regression line over this data
+to find out the best fit for the data so we can approximate a height given an age.
+
+![Linear Regression Animated](images/11_5-Lin_Reg/plot_regression.gif)
