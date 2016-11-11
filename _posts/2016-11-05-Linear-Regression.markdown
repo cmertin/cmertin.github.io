@@ -121,7 +121,7 @@ which reads in the data and performs the linear regression using gradient descen
 
 The above defined algorithms were used and implemented, where it would simultaneously
 update the values of $$\theta_{0}$$ and $$\theta_{1}$$. It would continually do
-this until the condition $$\left\| \vec{\theta} - \vec{\theta}_{old} \right\| _{2} < 10e^{-6}$$ was met.
+this until the condition $$\left\| \vec{\theta} - \vec{\theta}_{old} \right\| _{2} < 10^{-6}$$ was met.
 
 I chose a value of $$\alpha = 0.25$$ for this problem, and also stored all the values of
 $$\vec{\theta}$$ so you can see how $$\vec{\theta}$$ evolves over time.
