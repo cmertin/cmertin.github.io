@@ -43,11 +43,51 @@ $$\theta_{j} = \theta_{j} - \alpha \frac{1}{N}\sum_{i=1}^{N}\left[h_{\theta}\lef
 
 ##### Feature Scaling
 
+For a problem with multiple features, we need to make sure that the features are
+on a similar scale (_i.e._ ranges of values). This will allow Gradient Descent to
+converge quicker.
+
+###### Example:
+
+Let's say you have a feature vector for a house. And your two features are $$x_{1} = \text{size } (0 - 2000 ft^{2})$$ and $$x_{2} = \text{bedrooms } (1-5)$$.
+
+If you plot the contours of $$J(\vec{\theta})$$, they will be skewed and more
+elliptically shaped, and it can oscillate back and forth until it locates the global
+minimum.
+
+Therefore, the way to fix this is to scale all the features to the same ranges.
+We can simply go through the data and manipulate it by
+
+$$x_{1} = \frac{\text{size }ft^{2}}{2000}$$
+$$x_{2} = \frac{\text{bedrooms}}{5}$$
+
+This will allow Gradient Descent to take a much more direct path to the minimum,
+and it will converge *much* quicker.
+
+We can also use a "mean normalization approach" for feature scaling, where we make
+the mean be at 0, thus giving a feature range of $$-1 \leq x_{i} \leq 1$$. From
+our above example, this would translate to
+
+$$x_{1} = \frac{\text{size} - 1000}{2000}$$
+$$x_{2} = \frac{\text{bedrooms} - 2}{5}$$
+
+_Note:_ It does not have to be exactly in the same ranges, as long as the ranges
+are in the same magnitude.
+
+This can be generalized to be
+
+$$x_{i} = \frac{x_{i} - \mu_{i}}{\sigma_{i}}$$
+
+where $$\mu_{i}$$ is the average and $$\sigma_{i}$$ is either the standard deviation
+of the range of values, or it can simply be set to $$max - min$$.
+
+#### Polynomial Regression
+
 
 
 #### Normal Equation
 
-### Polynomial Regression
+
 
 # Air Quality Prediction
 
