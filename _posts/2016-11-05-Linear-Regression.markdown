@@ -9,7 +9,7 @@ x: Age (years) | y: Height (meters)
 ---------------|-------------------
 2.0659         | 0.7919
 2.3684         | 0.9160
-2.5400         | 9.0538
+2.5400         | 0.9054
 ...            | ...
 
 And so on, producing a plot of
@@ -50,4 +50,4 @@ to solve
 $$ \min_{\theta_{0},\theta{1}} \frac{1}{2N}\sum_{i=1}^{N}\left( h_{\theta}\left(x^{(i)}\right) - y^{(i)} \right)^{2}$$
 
 Where we're going to be minimizing the *average* difference, hence the fractional
-value out front. 
+value out front.
