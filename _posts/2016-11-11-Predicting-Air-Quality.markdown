@@ -197,7 +197,7 @@ hours in the data set. The "true values" of the concentrations can be seen below
 ![True Values](images/2016/11/11_11-Multi_Lin_Reg/True_Concentration_Hour.png)  
 
 As can be seen, there's a lot of what looks to be non-linearity in the data. In
-using the model to represent the final 24 hours. The realtive error can be seen below.
+using the model to represent the final 24 hours. The relative error can be seen below.
 
 ![Relative Error](images/2016/11/11_11-Multi_Lin_Reg/Relative_Error_Hour.png)
 
