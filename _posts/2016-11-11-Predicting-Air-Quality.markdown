@@ -170,6 +170,7 @@ of 10 times, once for each of the features that were being modeled.
 A linear function was used, one value of $$\theta$$ for each feature. The features
 that were used had the values:
 
+0. 1 (Offset)
 1. Month
 2. Day
 3. Year
@@ -206,4 +207,10 @@ HydroCarbons, NOx, NO2, and PT08.S5 had under a 20% relative error.
 
 Based on the data that was used in this prediction, I would say that this turned
 into a decent model as there are other features that would have helped to make
-this model more accurate. For example, wind speed or rain would have helped. 
+this model more accurate. For example, wind speed or rain would have helped.
+
+we can also look at the distribution of the errors, where each was fitted with
+a gamma distribution on the number of counts. This allows the ability to see
+where the most common ranges of relative error lied.
+
+![Relative Error Dist](images/2016/11/11_11-Multi_Lin_Reg/Error_Distribution.png)
