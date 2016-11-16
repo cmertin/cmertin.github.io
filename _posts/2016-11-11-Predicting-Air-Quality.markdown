@@ -196,21 +196,30 @@ hours in the data set. The "true values" of the concentrations can be seen below
 
 ![True Values](images/2016/11/11_11-Multi_Lin_Reg/True_Concentration_Hour.png)  
 
-As can be seen, there's a lot of what looks to be non-linearity in the data. In
-using the model to represent the final 24 hours. The relative error can be seen below.
+As can be seen, the data seems to be mostly linear relative to the hours. In using
+the model to predict the final 24 hours, we get concentration values such as
+
+![Concentration Values](images/2016/11/11_11-Multi_Lin_Reg/Concentration_Hour.png)
+
+Which, at least in two dimensions seems to be mostly linear in time. It also seems
+to agree quite well with the trends in the actual results above.
+
+Following this, we can look at the relative error of the data. Over the last 24
+hours, the relative error for each of the particulates can be seen below.
 
 ![Relative Error](images/2016/11/11_11-Multi_Lin_Reg/Relative_Error_Hour.png)
 
-This shows that for some of the particulates it actually produced a decent
-model. For example, CO had almost no relative error, and things such as Non-Metanic
-HydroCarbons, NOx, NO2, and PT08.S5 had under a 20% relative error.
+As this figure shows, the relative error did quite well for CO, and even for
+Non-Metanic HydroCarbons, NO2, NOx, and Indium Oxide (PT08.S5), as all of these
+had a maximum trendline in their relative error at 10% or less.
 
-Based on the data that was used in this prediction, I would say that this turned
-into a decent model as there are other features that would have helped to make
-this model more accurate. For example, wind speed or rain would have helped.
+However, the other particulates have a much more varied response in their relative
+errors. This is possibly due to not having enough features to account for these.
+For example, a feature of wind speed and direction could be useful as that is
+an important factor when it comes to pollution. As well as if it rained or not
+(and how much) as that helps with mitigating pollution as well.
 
-we can also look at the distribution of the errors, where each was fitted with
-a gamma distribution on the number of counts. This allows the ability to see
-where the most common ranges of relative error lied.
+To get a better picture of the pollution, we can look at the distribution of
+the relative errors, which can be seen below.
 
 ![Relative Error Dist](images/2016/11/11_11-Multi_Lin_Reg/Error_Distribution.png)
