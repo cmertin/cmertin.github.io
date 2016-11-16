@@ -223,3 +223,7 @@ To get a better picture of the pollution, we can look at the distribution of
 the relative errors, which can be seen below.
 
 ![Relative Error Dist](images/2016/11/11_11-Multi_Lin_Reg/Error_Distribution.png)
+
+This plot shows that the most common average relative error is around 20% or less,
+which is a decent model for predicting the data considering that there are other
+features that could have helped improve this model. 
