@@ -10,7 +10,7 @@ Logistic Regression has a hypothesis function $$h_{\theta}(x)$$ that produces
 values in the range $$0 \leq h_{\theta}(x) \leq 1$$. This is due to the fact that
 the equation for the hypothesis is
 
-$$h_{\theta}(x) = \frac{1}{1 + e^{\vec{\theta}^{T}\vec{x}}}$$
+$$h_{\theta}(x) = \frac{1}{1 + e^{-\vec{\theta}^{T}\vec{x}}}$$
 
 Which is also known as the "Sigmoid Function." The Sigmoid Function has the shape
 
@@ -34,6 +34,27 @@ $$\vec{\theta}^{T}\vec{x} < 0$$.
 
 ## Cost Function
 
+We can define our cost function for Logistic Regression as being
+
+$$cost(h_{\theta}(x), y) = \left\{ \begin{array}-\log(h_{\theta}(x)) & \text{if }y = 1\\
+-\log(1 - h_{\theta}(x)) & \text{if }y == 0 \end{array} \right.$$
+
+Which makes sense as a cost function to use. Because if $$y = 1$$ and $$h_{\theta}(x) = 1$$, then the cost is $$0$$. However, as $$h_{\theta}(x) \rightarrow 0$$, we get
+$$cost \rightarrow \infty$$. This is good because we want our classifier to pay
+a large cost if it gets it wrong.
+
+We can simplify this cost function into a single equation, instead of a piecewise equation, as being
+
+$$cost(h_{\theta}(x), y) = -y\log(h_{\theta}(x)) - (1-y)\log(1 - h_{\theta}(x))$$
+
+Which we are able to do since $$y = \{ 0, 1\}$$. So it cancels out the appropriate
+opposing factor. This gives our cost function as being
+
+$$J(\theta) = -\frac{1}{N}\left[\sum_{i=1}^{M}y^{(i)}\log(h_{\theta}(x^{(i)})) + (1 - y^(i))\log(1 - h_{\theta}(x^{(i)})) \right]$$
+
+And, again, to get the values of $$\theta$$ we want
+
+$$\min_{\theta}J(\theta)$$
 
 
 # Support Vector Machines
