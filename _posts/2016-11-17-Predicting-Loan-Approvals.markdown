@@ -14,7 +14,7 @@ $$h_{\theta}(x) = \frac{1}{1 + e^{-\vec{\theta}^{T}\vec{x}}}$$
 
 Which is also known as the "Sigmoid Function." The Sigmoid Function has the shape
 
-![Sigmoid Function](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/600px-Logistic-curve.svg.png)
+![Sigmoid Function](images/2016/11/11_17-Loan_Approvals/Sigmoid_Function.png)
 
 which asymptotes at $$1$$ and $$0$$. Just like with Linear Regression, we need to
 fit the parameters $$\theta$$ to the data to produce the results. We can interpret
@@ -37,7 +37,7 @@ $$\vec{\theta}^{T}\vec{x} < 0$$.
 We can define our cost function for Logistic Regression as being
 
 $$cost(h_{\theta}(x), y) = \left\{ \begin{array}-\log(h_{\theta}(x)) & \text{if }y = 1\\
--\log(1 - h_{\theta}(x)) & \text{if }y == 0 \end{array} \right.$$
+-\log(1 - h_{\theta}(x)) & \text{if }y = 0 \end{array} \right.$$
 
 Which makes sense as a cost function to use. Because if $$y = 1$$ and $$h_{\theta}(x) = 1$$, then the cost is $$0$$. However, as $$h_{\theta}(x) \rightarrow 0$$, we get
 $$cost \rightarrow \infty$$. This is good because we want our classifier to pay
@@ -52,11 +52,50 @@ opposing factor. This gives our cost function as being
 
 $$J(\theta) = -\frac{1}{N}\left[\sum_{i=1}^{M}y^{(i)}\log(h_{\theta}(x^{(i)})) + (1 - y^(i))\log(1 - h_{\theta}(x^{(i)})) \right]$$
 
-And, again, to get the values of $$\theta$$ we want
+And, again, to get the values of $$\theta$$ we want to solve
 
 $$\min_{\theta}J(\theta)$$
 
+For which we will use Gradient Descent. In simplifying the $$\frac{\partial}{\partial \theta_{j}}J(\theta)$$ like before, we get
+
+$$\theta_{j} = \theta_{j} - \alpha \sum_{i=1}^{N}\left( h_{\theta}(x^{(i)} - y^{(i)} \right)x_{j}^{(i)}\quad \forall j = \{ 0, 1, \ldots, M\}$$
+
+which is the same as we had before. Therefore, we can use the same function as
+we did for Gradient Descent to get the minimization of $$\theta$$.
+
+## Regularized Logistic Regression
+
+Regularizing helps with overfitting. In order to implement regularization, we
+need to change the cost function. For example, we now have
+
+$$J(\theta) = \frac{1}{2N}\left[ \sum_{i=1}^{N}(h_{\theta}(x^{(i)}) - y^{(i)})^2 + \lambda \sum_{i=1}^{M}\theta_{j}^{2} \right]$$
+
+With the second term being the **Regularization Term**, and $$\lambda$$ is the
+_regularization parameter_, which controls the parameters of fitting the training
+set well, and secondly keeping the parameters small.
+
+If $$\lambda$$ is very large $$(\sim 10^{10})$$, then we will start penalizing
+all of the parameters and we will have all of the parameters tend towards zero.
+And if $$\lambda$$ is very small $$(\sim 10^{-10})$$, then it will have very little
+effect on regularizing the data and is back to prone to overfitting again. Therefore,
+we need a "good choice" in choosing $$\lambda$$.
+
+We also need to rederive $$\frac{\partial}{\partial \theta_{j}}J(\theta)$$ since
+it has now changed. However, not much has changed so we can simply write it as
+
+$$\theta_{j} = \theta_{j} - \alpha \frac{1}{N} \sum_{i=1}^{N}(h_{\theta}(x^{(i)}) - y^{(i)})x_{j}^{(i)} + \frac{\lambda}{N}\theta_{j}$$
+
+Which ignores the first "offset" term since there is no need to regularize it,
+and it stays the same as before. However, we can write all $$\theta_{j}$$'s as a
+single equation by rearranging the two to give
+
+$$\theta_{j} = \theta_{j}\left(1 - \alpha \frac{\lambda}{N}\right) - \alpha\frac{1}{N}\sum_{i=1}^{N}(h_{\theta}(x^{(i)}) - y^{(i)})x_{j}^{(i)}$$
+
+This update can be used for Linear Regression as well.
 
 # Support Vector Machines
+
+Sometimes called a "Large Margin Classifier."
+
 
 # Classifying Loan Approvals
