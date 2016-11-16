@@ -143,5 +143,67 @@ pseudoinverse can be implemented in `numpy` with the use of `numpy.linalg.pinv()
 
 # Air Quality Prediction
 
-* Use KNN for missing data
-* Use KNN and Multivariate Linear Regression to predict particulates
+The code for this project can be found [here](https://github.com/cmertin/Machine_Learning/tree/master/Air_Quality_Prediction/Data).
+
+### Cleaning the Data
+
+The data had to be "cleaned" since it had some features which were missing in
+the original data set. To do so, there were two different parameters that were used.
+First, if a data point had more than 2 features missing, that data was thrown out.
+Second, to make up for the missing features, KNN Regression with `k = 3` was used
+to get the 3 closest neighbors. From here, the missing feature was filled in with
+the average of the three closest neighbors.
+
+In calculating the nearest neighbors, only those datasets with *all* features were
+used. This may not have been the best thing to do since there were only approximately
+900 data points that had all the features, while there were around 7,000 data points
+with only 1 or two missing features.
+
+### Modeling the data
+
+The method used was the Normal Equation which is stated above. This was so that
+things such as "feature scaling" wouldn't have to be dealt with, and also the
+matrix was small enough $$(7,300 \times 14)$$ such that there wasn't going to
+be a problem in the linear algebra routines. The normal equation was used a total
+of 10 times, once for each of the features that were being modeled.
+
+A linear function was used, one value of $$\theta$$ for each feature. The features
+that were used had the values:
+
+1. Month
+2. Day
+3. Year
+4. Time (Hour)
+5. Temperature in °C
+6. Relative Humidity (%)
+7. AH Absolute Humidity
+8. Monday (boolean)
+9. Tuesday (boolean)
+10. Wednesday (boolean)
+11. Thursday (boolean)
+12. Friday (boolean)
+13. Saturday (boolean)
+14. Sunday (boolean)
+
+Where the last 7 features were created from the date. The logic behind using these
+was that during the week there should be more pollution in the air and this should
+_hopefully_ be able to act as a _relative_ attribute without having direct features
+for number of people driving, factories, etc.
+
+After training the model, it was tested on predicting the values of the _last_ 24
+hours in the data set. The "true values" of the concentrations can be seen below
+
+![True Values](images/2016/11/11_11-Multi_Lin_Reg/True_Concentration_Hour.png)  
+
+As can be seen, there's a lot of what looks to be non-linearity in the data. In
+using the model to represent the final 24 hours. The realtive error can be seen below.
+
+![Relative Error](images/2016/11/11_11-Multi_Lin_Reg/Relative_Error_Hour.png)
+
+This shows that for some of the particulates it actually produced a decent
+model. For example, CO had almost no relative error, and things such as Non-Metanic
+HydroCarbons, NOx, NO2, and PT08.S5 had under a 20% relative error.
+
+Based on the data that was used in this prediction, I would say that this turned
+into a decent model as there are other features that would have helped to make
+this model more accurate. For example, wind speed or rain would have helped. 
