@@ -50,7 +50,7 @@ $$cost(h_{\theta}(x), y) = -y\log(h_{\theta}(x)) - (1-y)\log(1 - h_{\theta}(x))$
 Which we are able to do since $$y = \{ 0, 1\}$$. So it cancels out the appropriate
 opposing factor. This gives our cost function as being
 
-$$J(\theta) = -\frac{1}{N}\left[\sum_{i=1}^{M}y^{(i)}\log(h_{\theta}(x^{(i)})) + (1 - y^(i))\log(1 - h_{\theta}(x^{(i)})) \right]$$
+$$J(\theta) = -\frac{1}{N}\left[\sum_{i=1}^{M}y^{(i)}\log(h_{\theta}(x^{(i)})) + (1 - y^{(i)})\log(1 - h_{\theta}(x^{(i)})) \right]$$
 
 And, again, to get the values of $$\theta$$ we want to solve
 
@@ -58,7 +58,7 @@ $$\min_{\theta}J(\theta)$$
 
 For which we will use Gradient Descent. In simplifying the $$\frac{\partial}{\partial \theta_{j}}J(\theta)$$ like before, we get
 
-$$\theta_{j} = \theta_{j} - \alpha \sum_{i=1}^{N}\left( h_{\theta}(x^{(i)} - y^{(i)} \right)x_{j}^{(i)}\quad \forall j = \{ 0, 1, \ldots, M\}$$
+$$\theta_{j} = \theta_{j} - \alpha \sum_{i=1}^{N}\left( h_{\theta}(x^{(i)}) - y^{(i)} \right)x_{j}^{(i)}\quad \forall j = \{ 0, 1, \ldots, M\}$$
 
 which is the same as we had before. Therefore, we can use the same function as
 we did for Gradient Descent to get the minimization of $$\theta$$.
@@ -109,4 +109,32 @@ where we want $$\theta^{T}x \geq 1$$ for $$y = 1$$ and $$\theta^{T}x \leq -1$$ f
 Linear SVM is implemented in Scikit-Learn by using `sklearn.svm.LinearSVC`,
 with the documentation can be found here [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC).
 
-# Classifying Loan Approvals
+# Naive Bayes classification
+
+Naive Bayes use Bayes' Theorem with the "naive" assumption of independence between
+every pair of features. Given a class variable $$y$$ and a dependent feature vector
+$$x_{1}$$ through $$x_{n}$$, Bayes' theorem states the following relationship:
+
+$$P(y| x_{1},\ldots ,x_{n}) = \frac{P(y)P(x_{1},\ldots, x_{n}| y)}{P(x_{1},\ldots ,x_{n})}$$
+
+Using the naive independence assumption that
+
+$$P(x_{i} | y, x_{1}, \ldots, x_{i-1}, x_{i+1}, \ldots, x_{n}) = P(x_{i} | y)$$
+
+for all $$i$$'s. This relationship can be simplified into
+
+$$P(y | x_{1}, \ldots, x_{n}) = \frac{P(y)\prod_{i=1}^{n}P(x_{i} | y)}{P(x_{1}, \ldots, x_{n})}$$
+
+Since $$P(x_{1}, \ldots, x_{n})$$ is constant for any of the inputs, we can simplify
+it further by stating
+
+$$P(y | x_{1}, \ldots, x_{n}) \propto P(y) \prod_{i=1}^{n} P(x_{i} | y)$$
+
+Which we can then write down the classifier as
+
+$$\hat{y} = \arg\!\max_{y} P(y)\prod_{i=1}^{n}P(x_{i}|y)$$
+
+# Credit Card Fraud Detection
+
+Both of these two techniques can be used for classifying credit card fraud. The
+dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud).
