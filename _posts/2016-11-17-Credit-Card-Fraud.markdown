@@ -153,7 +153,7 @@ dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud)
 
 ###Linear SVM
 
-    &nbsp;   |**precision**   | **recall**  |**f1-score**   |**support**
+&nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
 -------------|------------|---------|-----------|-------
         0.0  |     0.97   |   1.00  |    0.98   |  55179
         1.0  |     0.83   |   0.05  |    0.09   |   1785
