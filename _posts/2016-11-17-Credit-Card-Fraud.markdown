@@ -141,15 +141,28 @@ of the two classes. What this does is it continually resamples from the underrep
 class until both data sets are relatively equal. This is done for the *training set*.
 
 It is important that the data remains relatively the same unevenness as the original
-data set, as you want to see how your model works for predicting on the test set.
+data set, as you want to see how your model works for predicting on a set of data
+that represents an actual data set.
 
 # Credit Card Fraud Detection
 
 Both of these two techniques can be used for classifying credit card fraud. The
 dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud).
 
+The code that was used for this classification problem can be found [here](https://github.com/cmertin/Machine_Learning/tree/master/Credit_Card_Fraud).
 
+In order to perform the classification on this data, the following steps were
+taken:
 
+1. Separate the data into two classes
+2. Take 20% of the data from both classes as the "test set"
+3. Build the training set with Upsampling
+4. Independently shuffle both data sets
+
+After taking the above steps with the data, which can be found as `UpSample` function
+[here](https://github.com/cmertin/Machine_Learning/blob/master/Library/ML_Alg.py),
+the above classifiers were used on the data. The results of their predictions on
+the test set can be seen below:
 
 ##### Linear SVM
 
@@ -176,3 +189,9 @@ dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud)
 0.0  |     0.99   |   1.00  |    1.00   |  56432
 1.0  |     0.68   |   0.13  |    0.23   |   532
 **avg / total** |       0.99|      0.99|      0.99|     56964
+
+
+In these tests, Logistic Regression outperformed both Linear SVM and Naive Bayes.
+This is most likely due to the fact that Logistic Regression performs well with
+uneven data sets, and also that there is probably some correlation between the
+features, reducing the effectiveness of Gaussian Naive Bayes.
