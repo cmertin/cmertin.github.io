@@ -151,7 +151,7 @@ dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud)
 
 
 
-### Linear SVM
+##### Linear SVM
 
 &nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
 -------------|------------|---------|-----------|-------
@@ -160,7 +160,7 @@ dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud)
 **avg / total** |       0.97|      0.97|      0.96|     56964
 
 
-### Logistic Regression
+##### Logistic Regression
 
 &nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
 -------------|------------|---------|-----------|-------
@@ -169,7 +169,7 @@ dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud)
 **avg / total** |       0.99|      0.99|      0.99|     56964
 
 
-### Gaussian Naive Bayes
+##### Gaussian Naive Bayes
 
 &nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
 -------------|------------|---------|-----------|-------
