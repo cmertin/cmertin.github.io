@@ -134,7 +134,44 @@ Which we can then write down the classifier as
 
 $$\hat{y} = \arg\!\max_{y} P(y)\prod_{i=1}^{n}P(x_{i}|y)$$
 
+# Upsampling
+
+Up Sampling is a technique that is used for when data is uneven in equal representation
+of the two classes. What this does is it continually resamples from the underrepresented
+class until both data sets are relatively equal. This is done for the *training set*.
+
+It is important that the data remains relatively the same unevenness as the original
+data set, as you want to see how your model works for predicting on the test set.
+
 # Credit Card Fraud Detection
 
 Both of these two techniques can be used for classifying credit card fraud. The
 dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud).
+
+
+
+
+###Linear SVM
+             |**precision**   | **recall**  |**f1-score**   |**support**
+-------------|------------|---------|-----------|-------
+        0.0  |     0.97   |   1.00  |    0.98   |  55179
+        1.0  |     0.83   |   0.05  |    0.09   |   1785
+**avg / total** |       0.97|      0.97|      0.96|     56964
+
+
+###Logistic Regression
+
+             |**precision**   | **recall**  |**f1-score**   |**support**
+-------------|------------|---------|-----------|-------
+0.0  |     0.99   |   1.00  |    0.99   |  56294
+1.0  |     0.88   |   0.13  |    0.23   |   670
+**avg / total** |       0.99|      0.99|      0.99|     56964
+
+
+###Gaussian Naive Bayes
+
+             |**precision**   | **recall**  |**f1-score**   |**support**
+-------------|------------|---------|-----------|-------
+0.0  |     0.99   |   1.00  |    1.00   |  56432
+1.0  |     0.68   |   0.13  |    0.23   |   532
+**avg / total** |       0.99|      0.99|      0.99|     56964
