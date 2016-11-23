@@ -71,6 +71,7 @@ markdown: kramdown
 
 gems:
     - jekyll-paginate
+    - redirect_to
 
 sass:
     style: compressed
