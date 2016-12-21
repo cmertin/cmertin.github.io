@@ -38,7 +38,7 @@ After cleaning up the data, it was ready to analyze. As in the movie for the [Ti
 
 ![age_dist](images/2016/12/12_22-Titanic/age_titanic.png)
 
-The above figure shows a violin plot of a distribution of ages for males and feamels abord the Titanic. The height of each has been scaled by the observed number of counts in the test set. As this shows, there are more men than women on the boat, and also their ages are more diverse.
+The above figure shows a violin plot of a distribution of ages for males and feamels abord the Titanic. The thicker line shows the median, and the thinner lines show the quartiles for the ages. The height of each has been scaled by the observed number of counts in the test set. As this shows, there are more men than women on the boat, and also had a more diverse age range.
 
 ![age_prob](images/2016/12/12_22-Titanic/ages_titanic.png)
 
