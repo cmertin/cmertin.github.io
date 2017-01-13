@@ -207,6 +207,6 @@ where $$t_{n}$$ stands for "true positive" and $$f_{n}$$ stands for "false negat
 
 The same goes for the f1-score for the fraud transacations since the F1 score is defined as
 
-$$F_{1} = 2\cdot \frac{\text{precision}\cdot\text{recall}}{\text{precision} + \text{recall}}$$
+$$F_{1} = \frac{2t_{p}}{2t_{p} + f_{p} + f_{n}}$$
 
 Since `recall` is a multiplied factor in the numerator, it skews the results here as well.
