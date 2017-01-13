@@ -136,20 +136,21 @@ $$\hat{y} = \arg\!\max_{y} P(y)\prod_{i=1}^{n}P(x_{i}|y)$$
 
 # Upsampling
 
-Up Sampling is a technique that is used for when data is uneven in equal representation
-of the two classes. What this does is it continually resamples from the underrepresented
-class until both data sets are relatively equal. This is done for the *training set*.
+Up Sampling is a technique that is used for when one class of the data is drastically unevenly represented in the data. To help with this, upsampling continually resamples from the underrepresented
+class until both data sets are represented relatively equal. This is done for the *training set*.
 
-It is important that the data remains relatively the same unevenness as the original
-data set, as you want to see how your model works for predicting on a set of data
-that represents an actual data set.
+It is important that this is only done for the training set since you want the test data to remain relatively the same unevenness as the original data when predicting.
+
+For example, in the case of credit card fraud, it only happens in a fraction of a percent of credit card transactions. Therefore, for the best "total accuracy" if we just let it train on the normal data, it would essentially ignore the fradulent cases since they're not as represented. We changed this by giving it a roughly 50/50 distribution between the two classes, resampling from the data.
+
+However, when running our trained model on the test set, we want to see how it will perform on the "real world data," so the test set was not upsampled at all. 
 
 # Credit Card Fraud Detection
 
 Both of these two techniques can be used for classifying credit card fraud. The
-dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud).
+dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud). It's important to note that the data was anonymized so that there was no identifiable information in it. Therefore, it was impossible to tell what the "dominant property" was in identifying a transaction as credit card fraud. 
 
-The code that was used for this classification problem can be found [here](https://github.com/cmertin/Machine_Learning/tree/master/Credit_Card_Fraud).
+The code that was used for this classification problem can be found [here](https://github.com/cmertin/Machine_Learning/tree/master/Credit_Card_Fraud). 
 
 In order to perform the classification on this data, the following steps were
 taken:
@@ -195,3 +196,17 @@ In these tests, Logistic Regression outperformed both Linear SVM and Naive Bayes
 This is most likely due to the fact that Logistic Regression performs well with
 uneven data sets, and also that there is probably some correlation between the
 features, reducing the effectiveness of Gaussian Naive Bayes.
+
+Also, in looking at the results for each of these, the low values for `recall` and `f1-score` are not really relevant for the fraud causes. The reason is as follows:
+
+Recall is defined by the following function
+
+$$\text{\bf Recall} = \frac{t_{p}}{t_{p} + f_{n}}$$
+
+where $$t_{n}$$ stands for "true positive" and $$f_{n}$$ stands for "false negative." While the accuracy for the cases that wasn't fraud detection was on the order of 99% accurate, this leaves approximately 1% being mislabeled. Due to the above definition of recall, this will greatly inflate the denominator since the number of mislabelled non-fraud transactions would be quite large compared to the total number of actual fradulent transactions.
+
+The same goes for the f1-score for the fraud transacations since the F1 score is defined as
+
+$$F_{1} = 2\cdot \frac{\text{precision}\cdot\text{recall}}{\text{precision} + \text{recall}}$$
+
+Since `recall` is a multiplied factor in the numerator, it skews the results here as well.

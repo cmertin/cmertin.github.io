@@ -47,7 +47,7 @@ We want to choose $$\theta_{0}$$ and $$\theta_{1}$$ such that $$h_{\theta}(x)$$
 is close to $$y$$ for our training examples $$(x,y)$$. More formally, we want
 to solve
 
-$$ \min_{\theta_{0},\theta{1}} \frac{1}{2N}\sum_{i=1}^{N}\left[ h_{\theta}\left(x^{(i)}\right) - y^{(i)} \right]^{2}$$
+$$ \min_{\theta_{0},\theta_{1}} \frac{1}{2N}\sum_{i=1}^{N}\left[ h_{\theta}\left(x^{(i)}\right) - y^{(i)} \right]^{2}$$
 
 Where we're going to be minimizing the *average* difference, hence the fractional
 value out front.

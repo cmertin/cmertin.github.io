@@ -10,9 +10,9 @@ is that we have more variables/features and more derivatives to take. Our hypoth
 
 $$h_{\theta}(x) = \theta_{0} + \sum_{i=1}^{M}\theta_{i}x_{i}$$
 
-where $$x_{0} = 1$$ and $$\vec{\theta} \in \mathbb{R}^{M+1}$$ and $$\vec{x} \in \mathbb{R}^{M+1}$$. This means that we can rewrite our function as
+where $$x_{0} = 1$$, $$\vec{\theta} \in \mathbb{R}^{M+1}$$, and $$\vec{x} \in \mathbb{R}^{M+1}$$. This means that we can rewrite our function as
 
-$$h_{\theta}(\vec{x}) = \vec{\theta}^{T}\vec{x}$$
+$$h_{\theta}(\vec{x}) = \vec{\theta}^{T}\cdot \vec{x}$$
 
 where it is just a resulting vector inner-product. From here, there are two ways we
 can solve this. One is by _Gradient Descent_ but also by the _Normal Equation_.
@@ -139,7 +139,7 @@ $$X$$ is singular (invertible). This has the potential to cause problems when
 calculating $$(X^{T}X)^{-1}$$. Instead of calculating the inverse directly, what
 you can do is use the "Pseudoinverse" which will give you a good enough representation
 of the inverse every time and it will be close enough for the problem. The
-pseudoinverse can be implemented in `numpy` with the use of `numpy.linalg.pinv()`.
+pseudoinverse can be implemented in `numpy` with the use of `numpy.linalg.pinv()`. This is also fixed with the use of _regularization_ which is discussed in a later post.
 
 # Air Quality Prediction
 
@@ -163,12 +163,10 @@ with only 1 or two missing features.
 
 The method used was the Normal Equation which is stated above. This was so that
 things such as "feature scaling" wouldn't have to be dealt with, and also the
-matrix was small enough $$(7,300 \times 14)$$ such that there wasn't going to
-be a problem in the linear algebra routines. The normal equation was used a total
+matrix was small enough $$(7,300 \times 14)$$ which would not be too computationally intensive for the linear algebraic operations. The normal equation was used a total
 of 10 times, once for each of the features that were being modeled.
 
-A linear function was used, one value of $$\theta$$ for each feature. The features
-that were used had the values:
+In looking at the data, it seemed mostly linear throughout the course of the day, therefore a linear function was used, one value of $$\theta$$ for each feature. The features that were used had the values:
 
 0. 1 (Offset)
 1. Month
