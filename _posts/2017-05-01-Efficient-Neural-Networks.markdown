@@ -3,6 +3,10 @@
 
 This is a project that I'm working on with Hari Sundar. It is currently under development. 
 
+The point of this project is to allow neural networks to essentially *learn* their own structure such that as it *learns* about the data, it also *learns* about how the structure is progressing. This will bring about things such as faster convergence and a faster learning rate, with hopefully optimized storage costs as well. It is essentially a mix between a *dense NN* and a *sparse NN.*
+
+As this is my ongoing project, this site will only be updated after I finish significant parts of the work. This is to keep other people from claiming this work as their own before I'm able to finish implementing everything.
+
 
 ```python
 import tensorflow as tf
