@@ -10,9 +10,10 @@ from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets
 tf.set_random_seed(0)
 ```
 
+We need to download the MNIST data
+
 
 ```python
-# Download images and labels into mnist.test and mnist.train
 mnist = read_data_sets("data", one_hot=True, reshape=False, validation_size=0)
 ```
 
@@ -21,6 +22,8 @@ mnist = read_data_sets("data", one_hot=True, reshape=False, validation_size=0)
     Extracting data/t10k-images-idx3-ubyte.gz
     Extracting data/t10k-labels-idx1-ubyte.gz
 
+
+These are the place holders used for the first layer
 
 
 ```python
