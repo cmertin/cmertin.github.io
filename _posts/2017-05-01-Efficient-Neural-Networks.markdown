@@ -12,7 +12,7 @@ The final version will be uploaded to github as well so it can be easily forked 
 
 This project is implemented with a TensorFlow backend. The goal of this project is to reduce the training and prediction time with minimal loss to accuracy.
 
-The project consists of using Hierarchial Matrices as the "hidden layers" which are usually the largest and most computationally demanding in the network. With the use of Hierarchial Matrices, instead of the matrix-matrix multiplcation being $$\mathcal{O}(n^{3})$$, it is reduced down to $$\mathcal{O}(n^)$$ by refomulating "low rank" portions of the matrix.
+The project consists of using Hierarchial Matrices as the "hidden layers" which are usually the largest and most computationally demanding in the network. With the use of Hierarchial Matrices, instead of the matrix-matrix multiplcation being $$\mathcal{O}(n^{3})$$, it is reduced down to $$\mathcal{O}(n)$$ by refomulating "low rank" portions of the matrix.
 
 The use of Low Rank approximations of the weight matrices have been used to **test** the performance with decent results. On the current data set being tested, it was able to reduce the training time from 10 minutes on an AWS instance to just under 2 minutes with only a 1% loss in accuracy.
 
