@@ -147,7 +147,7 @@ However, when running our trained model on the test set, we want to see how it w
 
 # Credit Card Fraud Detection
 
-Both of these two techniques can be used for classifying credit card fraud. The
+All three of these techniques can be used for classifying credit card fraud. The
 dataset was download from [here](https://www.kaggle.com/dalpozz/creditcardfraud). It's important to note that the data was anonymized so that there was no identifiable information in it. Therefore, it was impossible to tell what the "dominant property" was in identifying a transaction as credit card fraud. 
 
 The code that was used for this classification problem can be found [here](https://github.com/cmertin/Machine_Learning/tree/master/Credit_Card_Fraud). 
@@ -160,37 +160,471 @@ taken:
 3. Build the training set with Upsampling
 4. Independently shuffle both data sets
 
-After taking the above steps with the data, which can be found as `UpSample` function
-[here](https://github.com/cmertin/Machine_Learning/blob/master/Library/ML_Alg.py),
-the above classifiers were used on the data. The results of their predictions on
-the test set can be seen below:
 
-##### Linear SVM
-
-&nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
--------------|------------|---------|-----------|-------
-        0.0  |     0.97   |   1.00  |    0.98   |  55179
-        1.0  |     0.83   |   0.05  |    0.09   |   1785
-**avg / total** |       0.97|      0.97|      0.96|     56964
+But first, we have to look at and explore the data
 
 
-##### Logistic Regression
+```python
+%matplotlib inline
+from __future__ import print_function, division
+import datetime
+import os
+import sys
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+sns.set(color_codes=True)
+import pandas as pd
+from sklearn.svm import LinearSVC
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report
+from scipy import stats, integrate
+# Gets the path/library with my Machine Learning Programs and adds it to the
+# current PATH so it can be imported
+LIB_PATH = os.path.dirname(os.getcwd()) # Goes one parent directory up
+LIB_PATH = LIB_PATH + "/Library/" # Appends the Library folder to the path
+sys.path.append(LIB_PATH)
+from ML_Alg import LogisticRegression, UpSample
+from f_io import ReadCSV
+```
 
-&nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
--------------|------------|---------|-----------|-------
-0.0  |     0.99   |   1.00  |    0.99   |  56294
-1.0  |     0.88   |   0.13  |    0.23   |   670
-**avg / total** |       0.99|      0.99|      0.99|     56964
+And we can read in the data
+
+```python
+data_file = "creditcard.csv"
+DIR = os.getcwd() + "/data/"
+FILE = DIR + data_file
+
+x, y = ReadCSV(FILE)
+card_data = pd.read_csv(FILE)
+```
+
+Check for missing data in the dataset
+
+```python
+card_data.isnull().sum()
+```
 
 
-##### Gaussian Naive Bayes
 
-&nbsp;       |**precision**   | **recall**  |**f1-score**   |**support**
--------------|------------|---------|-----------|-------
-0.0  |     0.99   |   1.00  |    1.00   |  56432
-1.0  |     0.68   |   0.13  |    0.23   |   532
-**avg / total** |       0.99|      0.99|      0.99|     56964
 
+    Time      0
+    V1        0
+    V2        0
+    V3        0
+    V4        0
+    V5        0
+    V6        0
+    V7        0
+    V8        0
+    V9        0
+    V10       0
+    V11       0
+    V12       0
+    V13       0
+    V14       0
+    V15       0
+    V16       0
+    V17       0
+    V18       0
+    V19       0
+    V20       0
+    V21       0
+    V22       0
+    V23       0
+    V24       0
+    V25       0
+    V26       0
+    V27       0
+    V28       0
+    Amount    0
+    Class     0
+    dtype: int64
+
+Learn what the columns mean
+
+
+```python
+card_data.describe()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>V1</th>
+      <th>V2</th>
+      <th>V3</th>
+      <th>V4</th>
+      <th>V5</th>
+      <th>V6</th>
+      <th>V7</th>
+      <th>V8</th>
+      <th>V9</th>
+      <th>...</th>
+      <th>V21</th>
+      <th>V22</th>
+      <th>V23</th>
+      <th>V24</th>
+      <th>V25</th>
+      <th>V26</th>
+      <th>V27</th>
+      <th>V28</th>
+      <th>Amount</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>284807.000000</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>...</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>284807.000000</td>
+      <td>284807.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>94813.859575</td>
+      <td>3.919560e-15</td>
+      <td>5.688174e-16</td>
+      <td>-8.769071e-15</td>
+      <td>2.782312e-15</td>
+      <td>-1.552563e-15</td>
+      <td>2.010663e-15</td>
+      <td>-1.694249e-15</td>
+      <td>-1.927028e-16</td>
+      <td>-3.137024e-15</td>
+      <td>...</td>
+      <td>1.537294e-16</td>
+      <td>7.959909e-16</td>
+      <td>5.367590e-16</td>
+      <td>4.458112e-15</td>
+      <td>1.453003e-15</td>
+      <td>1.699104e-15</td>
+      <td>-3.660161e-16</td>
+      <td>-1.206049e-16</td>
+      <td>88.349619</td>
+      <td>0.001727</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>47488.145955</td>
+      <td>1.958696e+00</td>
+      <td>1.651309e+00</td>
+      <td>1.516255e+00</td>
+      <td>1.415869e+00</td>
+      <td>1.380247e+00</td>
+      <td>1.332271e+00</td>
+      <td>1.237094e+00</td>
+      <td>1.194353e+00</td>
+      <td>1.098632e+00</td>
+      <td>...</td>
+      <td>7.345240e-01</td>
+      <td>7.257016e-01</td>
+      <td>6.244603e-01</td>
+      <td>6.056471e-01</td>
+      <td>5.212781e-01</td>
+      <td>4.822270e-01</td>
+      <td>4.036325e-01</td>
+      <td>3.300833e-01</td>
+      <td>250.120109</td>
+      <td>0.041527</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>-5.640751e+01</td>
+      <td>-7.271573e+01</td>
+      <td>-4.832559e+01</td>
+      <td>-5.683171e+00</td>
+      <td>-1.137433e+02</td>
+      <td>-2.616051e+01</td>
+      <td>-4.355724e+01</td>
+      <td>-7.321672e+01</td>
+      <td>-1.343407e+01</td>
+      <td>...</td>
+      <td>-3.483038e+01</td>
+      <td>-1.093314e+01</td>
+      <td>-4.480774e+01</td>
+      <td>-2.836627e+00</td>
+      <td>-1.029540e+01</td>
+      <td>-2.604551e+00</td>
+      <td>-2.256568e+01</td>
+      <td>-1.543008e+01</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>54201.500000</td>
+      <td>-9.203734e-01</td>
+      <td>-5.985499e-01</td>
+      <td>-8.903648e-01</td>
+      <td>-8.486401e-01</td>
+      <td>-6.915971e-01</td>
+      <td>-7.682956e-01</td>
+      <td>-5.540759e-01</td>
+      <td>-2.086297e-01</td>
+      <td>-6.430976e-01</td>
+      <td>...</td>
+      <td>-2.283949e-01</td>
+      <td>-5.423504e-01</td>
+      <td>-1.618463e-01</td>
+      <td>-3.545861e-01</td>
+      <td>-3.171451e-01</td>
+      <td>-3.269839e-01</td>
+      <td>-7.083953e-02</td>
+      <td>-5.295979e-02</td>
+      <td>5.600000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>84692.000000</td>
+      <td>1.810880e-02</td>
+      <td>6.548556e-02</td>
+      <td>1.798463e-01</td>
+      <td>-1.984653e-02</td>
+      <td>-5.433583e-02</td>
+      <td>-2.741871e-01</td>
+      <td>4.010308e-02</td>
+      <td>2.235804e-02</td>
+      <td>-5.142873e-02</td>
+      <td>...</td>
+      <td>-2.945017e-02</td>
+      <td>6.781943e-03</td>
+      <td>-1.119293e-02</td>
+      <td>4.097606e-02</td>
+      <td>1.659350e-02</td>
+      <td>-5.213911e-02</td>
+      <td>1.342146e-03</td>
+      <td>1.124383e-02</td>
+      <td>22.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>139320.500000</td>
+      <td>1.315642e+00</td>
+      <td>8.037239e-01</td>
+      <td>1.027196e+00</td>
+      <td>7.433413e-01</td>
+      <td>6.119264e-01</td>
+      <td>3.985649e-01</td>
+      <td>5.704361e-01</td>
+      <td>3.273459e-01</td>
+      <td>5.971390e-01</td>
+      <td>...</td>
+      <td>1.863772e-01</td>
+      <td>5.285536e-01</td>
+      <td>1.476421e-01</td>
+      <td>4.395266e-01</td>
+      <td>3.507156e-01</td>
+      <td>2.409522e-01</td>
+      <td>9.104512e-02</td>
+      <td>7.827995e-02</td>
+      <td>77.165000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>172792.000000</td>
+      <td>2.454930e+00</td>
+      <td>2.205773e+01</td>
+      <td>9.382558e+00</td>
+      <td>1.687534e+01</td>
+      <td>3.480167e+01</td>
+      <td>7.330163e+01</td>
+      <td>1.205895e+02</td>
+      <td>2.000721e+01</td>
+      <td>1.559499e+01</td>
+      <td>...</td>
+      <td>2.720284e+01</td>
+      <td>1.050309e+01</td>
+      <td>2.252841e+01</td>
+      <td>4.584549e+00</td>
+      <td>7.519589e+00</td>
+      <td>3.517346e+00</td>
+      <td>3.161220e+01</td>
+      <td>3.384781e+01</td>
+      <td>25691.160000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
+
+Look at the class frequency
+
+```python
+class_freq = card_data["Class"].value_counts()
+print(class_freq)
+```
+
+    0    284315
+    1       492
+    Name: Class, dtype: int64
+
+```python
+sns.countplot(x="Class", data=card_data)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fafc6083860>
+
+
+
+
+![png](images/2016/11/11_17-Loan_Approvals/output_11_1.png)
+
+Since they are unequal, we can use upsampling
+
+
+```python
+data, test_data = UpSample(x, y)
+```
+
+Now we can look for correlations in the data
+
+
+```python
+X_data = card_data.iloc[:,1:29]
+
+# Correlation matrix for margin features
+
+corr = X_data.corr()
+
+# Set up the matplotlib figure
+plt.clf()
+plt.subplots(figsize=(10,10))
+
+# Draw the heat map
+sns.heatmap(corr, vmax=0.3, square=True, xticklabels=5, yticklabels=5, linewidths=0.5, cbar_kws={"shrink": 0.5})
+
+plt.title("Correlation Between Different Features")
+```
+
+
+
+
+    <matplotlib.text.Text at 0x7fafbd1f6668>
+
+
+
+
+    <matplotlib.figure.Figure at 0x7fafc6007b00>
+
+
+![png](images/2016/11/11_17-Loan_Approvals/output_15_2.png)
+
+
+Finally, we can see the correlation of the number of fraud cases per hour
+
+
+```python
+fraud = card_data.loc[card_data["Class"] == 1]
+```
+
+
+```python
+per_bins = 3600
+bin_range = np.arange(0, 172801, per_bins)
+
+out, bins = pd.cut(fraud["Time"], bins=bin_range, include_lowest=True, right=False, retbins=True)
+
+out.cat.categories = ((bins[:-1]/3600)+1).astype(int)
+out.value_counts(sort=False).plot(kind="bar", title="Fraud Cases Per Hour")
+```
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fafc5faf320>
+
+
+
+
+![png](images/2016/11/11_17-Loan_Approvals/output_18_1.png)
+
+Now we can run the classifiers to predict the classes
+
+### Support Vector Machines
+
+
+```python
+svm = LinearSVC()
+svm.fit(data[0], data[1])
+y_pred = svm.predict(test_data[0])
+print(classification_report(y_pred, test_data[1]))
+```
+
+                 precision    recall  f1-score   support
+    
+            0.0       0.98      1.00      0.99     55690
+            1.0       0.82      0.06      0.12      1274
+    
+    avg / total       0.98      0.98      0.97     56964
+    
+
+
+### Logistic Regression
+
+
+```python
+log_reg = LogisticRegressionCV()
+log_reg.fit(data[0], data[1])
+y_pred = log_reg.predict(test_data[0])
+print(classification_report(y_pred, test_data[1]))
+```
+
+                 precision    recall  f1-score   support
+    
+            0.0       0.99      1.00      0.99     56315
+            1.0       0.86      0.13      0.23       649
+    
+    avg / total       0.99      0.99      0.99     56964
+    
+
+
+### Gaussian Naive Bayes
+
+
+```python
+gnb = GaussianNB()
+gnb.fit(data[0], data[1])
+y_pred = gnb.predict(test_data[0])
+print(classification_report(y_pred, test_data[1]))
+```
+
+                 precision    recall  f1-score   support
+    
+            0.0       0.99      1.00      1.00     56432
+            1.0       0.68      0.13      0.22       532
+    
+    avg / total       0.99      0.99      0.99     56964
 
 In these tests, Logistic Regression outperformed both Linear SVM and Naive Bayes.
 This is most likely due to the fact that Logistic Regression performs well with
