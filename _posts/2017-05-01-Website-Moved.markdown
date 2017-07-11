@@ -1,0 +1,1 @@
+This website has been changed to a new site that allows for unlimited storage, and it can be found at [https://datastat.io](https://www.datastat.io/). There I will be publishing much larger projects with the data sets as well, and it also loads *much* faster.
